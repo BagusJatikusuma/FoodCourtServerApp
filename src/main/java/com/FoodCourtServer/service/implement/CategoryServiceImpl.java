@@ -40,6 +40,11 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    public void updateCategory(Category category) {
+        categoryDao.updateCategory(category.getId(),category.getName(),category.getCategoryType());
+    }
+
+    @Override
     public Category getCategoryById(String categoryId) {
         return categoryDao.findById(categoryId);
     }

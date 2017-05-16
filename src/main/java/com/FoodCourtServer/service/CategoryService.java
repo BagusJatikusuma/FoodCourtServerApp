@@ -18,4 +18,5 @@ public interface CategoryService {
     public List<Category> getCategories();
     public List<Category> getCategoriesByCategoryType(Boolean categoryType);
     public void saveCategory(Category category);
+    public void updateCategory(Category category);
 }

@@ -90,4 +90,13 @@ public class CategoryController {
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
+    public ResponseEntity<Category> editCategory(@RequestBody Category category) {
+        LOGGER.info("edit "+category.toString());
+
+        categoryService.updateCategory(category);
+
+        return new ResponseEntity<>(category,HttpStatus.CREATED);
+    }
+
 }
