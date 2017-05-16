@@ -35,6 +35,14 @@ public class Category {
     @NotNull
     @Column(name = "tipe_kategori")
     private Boolean categoryType;
+
+    public Category() {}
+
+    public Category(String id, String name, Boolean categoryType) {
+        this.id = id;
+        this.name = name;
+        this.categoryType = categoryType;
+    }
     
     public String getId() {
         return this.id;

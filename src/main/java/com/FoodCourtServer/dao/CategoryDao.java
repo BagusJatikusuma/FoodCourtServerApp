@@ -16,5 +16,6 @@ import org.springframework.data.repository.Repository;
 public interface CategoryDao extends Repository<Category, Long>{
     public List<Category> findByCategoryType(Boolean categoryType);
     public List<Category> findAll();
+    public void  save(Category category);
     public Category findById(String categoryId);
 }

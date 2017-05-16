@@ -85,7 +85,9 @@ public class CategoryController {
     public ResponseEntity<?> createCategory(@RequestBody Category category) {
         LOGGER.info("creating "+category.toString());
 
-        return new ResponseEntity<>(category, HttpStatus.OK);
+        categoryService.saveCategory(category);
+
+        return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
 }
