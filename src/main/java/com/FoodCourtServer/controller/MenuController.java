@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/menu")
 public class MenuController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
 
     @Autowired
     private MenuService menuService;
@@ -57,7 +57,7 @@ public class MenuController {
         if (menus == null) {
             LOGGER.error("menus not found");
 
-            return new ResponseEntity(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
 
         }
 
@@ -74,7 +74,7 @@ public class MenuController {
         if (menus == null) {
             LOGGER.error("menus with "+idCategory+" not found");
 
-            return new ResponseEntity(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
 
         }
 
@@ -90,7 +90,7 @@ public class MenuController {
         if (menus == null) {
             LOGGER.error("menus with "+categoryType.toString()+" not found");
 
-            return new ResponseEntity(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
 
         }
 
