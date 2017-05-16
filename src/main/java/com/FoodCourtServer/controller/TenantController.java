@@ -31,11 +31,6 @@ public class TenantController {
     @Autowired
     private TenantService tenantService;
 
-    @RequestMapping(value = "")
-    ResponseEntity<String> helloTenant() {
-        return new ResponseEntity<String>("hello tenant",HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/get-tenants", method = RequestMethod.GET)
     ResponseEntity<?> getTenants() {
         LOGGER.info("fetching Tenants");
