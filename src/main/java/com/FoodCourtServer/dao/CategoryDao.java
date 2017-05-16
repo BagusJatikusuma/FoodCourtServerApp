@@ -28,4 +28,6 @@ public interface CategoryDao extends Repository<Category, Long>{
     @Modifying
     @Query("update Category c set c.name = ?2, c.categoryType = ?3 where c.id = ?1")
     void updateCategory(String id, String name, Boolean categoryType);
+
+    void deleteById(String categoryId);
 }
