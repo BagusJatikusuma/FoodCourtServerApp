@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryService categoryService;
@@ -38,7 +38,7 @@ public class CategoryController {
         if (categories == null) {
             LOGGER.error("categories not found");
 
-            return new ResponseEntity(new CustomErrorType("category not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("category not found"), HttpStatus.NOT_FOUND);
 
         }
 
@@ -70,7 +70,7 @@ public class CategoryController {
         if (categories == null) {
             LOGGER.error("categories with "+type.toString()+" type not found");
 
-            return new ResponseEntity(new CustomErrorType("category not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("category not found"), HttpStatus.NOT_FOUND);
 
         }
 
