@@ -6,11 +6,7 @@
 package com.FoodCourtServer.model;
 
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,11 +21,28 @@ public class Tenant {
     private String id;
     
     @NotNull
+    @Column(name = "name")
     private String name;
+
+    @NotNull
+    @Column(name = "open_status")
+    private Boolean openStatus;
+
+    @NotNull
+    @Column(name = "description")
+    private String description;
+
+    @NotNull
+    @Column(name = "contact")
+    private String contact;
+
+    @NotNull
+    @Column(name = "open_time")
+    private String openTime;
     
     @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
     private List<Menu> menus;
-    
+
     public String getId() {
         return id;
     }
@@ -45,5 +58,36 @@ public class Tenant {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public String getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getOpenStatus() {
+        return openStatus;
+    }
+
+    public void setOpenStatus(Boolean openStatus) {
+        this.openStatus = openStatus;
+    }
 }
