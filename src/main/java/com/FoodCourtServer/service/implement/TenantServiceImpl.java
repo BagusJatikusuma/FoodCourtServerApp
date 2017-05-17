@@ -35,5 +35,15 @@ public class TenantServiceImpl implements TenantService {
     public Tenant getTenantById(String tenantId) {
         return tenantDao.findById(tenantId);
     }
-    
+
+    @Override
+    public void updateTenant(Tenant tenant) {
+        tenantDao.updateTenant(tenant.getId(),
+                tenant.getName(),
+                tenant.getOpenStatus(),
+                tenant.getDescription(),
+                tenant.getContact(),
+                tenant.getOpenTime());
+    }
+
 }

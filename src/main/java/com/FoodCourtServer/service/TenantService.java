@@ -16,4 +16,5 @@ import java.util.List;
 public interface TenantService {
     public List<Tenant> getTenants();
     public Tenant getTenantById(String tenantId);
+    public void updateTenant(Tenant tenant);
 }

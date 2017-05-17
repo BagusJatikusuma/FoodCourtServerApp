@@ -90,4 +90,9 @@ public class Tenant {
     public void setOpenStatus(Boolean openStatus) {
         this.openStatus = openStatus;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

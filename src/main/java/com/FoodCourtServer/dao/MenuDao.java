@@ -15,9 +15,13 @@ import org.springframework.data.repository.Repository;
  */
 public interface MenuDao extends Repository<Menu, Long>{
     public Menu findById(String menuId);
+
     public List<Menu> findAll();
+
     public List<Menu> findByCategory_Id(String idCategory);
+
     public List<Menu> findByCategory_CategoryType(Boolean categoryType);
+
     public List<Menu> findByTenant_Id(String outletId);
     
 }
