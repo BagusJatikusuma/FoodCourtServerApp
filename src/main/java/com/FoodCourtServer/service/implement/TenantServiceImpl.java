@@ -37,6 +37,11 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
+    public void createTenant(Tenant tenant) {
+        tenantDao.save(tenant);
+    }
+
+    @Override
     public void updateTenant(Tenant tenant) {
         tenantDao.updateTenant(tenant.getId(),
                 tenant.getName(),

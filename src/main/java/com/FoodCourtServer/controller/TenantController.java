@@ -69,4 +69,13 @@ public class TenantController {
         return new ResponseEntity<>(tenant,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    ResponseEntity<Tenant> createTenant(@RequestBody Tenant tenant) {
+        LOGGER.info("create "+tenant.toString());
+
+        tenantService.createTenant(tenant);
+
+        return new ResponseEntity<>(tenant, HttpStatus.CREATED);
+    }
+
 }

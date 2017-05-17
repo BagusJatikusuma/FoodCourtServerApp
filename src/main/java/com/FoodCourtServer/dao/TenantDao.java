@@ -22,6 +22,8 @@ public interface TenantDao extends Repository<Tenant, Long> {
 
     public Tenant findById(String tenantId);
 
+    public void save(Tenant tenant);
+
     @Modifying
     @Query("update Tenant t set t.name = ?2, " +
             "t.openStatus = ?3, " +
