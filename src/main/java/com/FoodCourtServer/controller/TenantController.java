@@ -23,7 +23,7 @@ import com.FoodCourtServer.service.TenantService;
 @RestController
 @RequestMapping("/tenant")
 public class TenantController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(TenantController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TenantController.class);
 
     @Autowired
     private TenantService tenantService;
@@ -37,7 +37,7 @@ public class TenantController {
         if (tenants == null) {
             LOGGER.error("Tenant not found");
 
-            return new ResponseEntity(new CustomErrorType("Tenant not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CustomErrorType("Tenant not found"), HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(tenants, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class TenantController {
 
         tenantService.updateTenant(tenant);
 
-        return new ResponseEntity<Tenant>(tenant, HttpStatus.OK);
+        return new ResponseEntity<>(tenant,HttpStatus.OK);
     }
 
 }
