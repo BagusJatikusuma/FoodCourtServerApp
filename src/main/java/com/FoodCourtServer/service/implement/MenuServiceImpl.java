@@ -40,8 +40,8 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public List<Menu> getMenusByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Menu> searchMenusByName(String name) {
+        return menuDao.findByNameContaining(name);
     }
 
     @Override

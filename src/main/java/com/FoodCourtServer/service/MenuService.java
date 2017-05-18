@@ -18,6 +18,6 @@ public interface MenuService {
     public List<Menu> getMenusByTenant(String tenantId);
     public List<Menu> getMenusByCategory(String categoryId);
     public List<Menu> getMenusByCategoryType(Boolean categoryType);
-    public List<Menu> getMenusByName(String name);
+    public List<Menu> searchMenusByName(String name);
     public void orderMenu(List<Menu> menus);
 }

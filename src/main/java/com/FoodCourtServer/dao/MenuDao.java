@@ -22,6 +22,8 @@ public interface MenuDao extends Repository<Menu, Long>{
 
     public List<Menu> findByCategory_CategoryType(Boolean categoryType);
 
-    public List<Menu> findByTenant_Id(String outletId);
+    public List<Menu> findByTenant_Id(String tenantId);
+
+    public List<Menu> findByNameContaining(String name);
     
 }

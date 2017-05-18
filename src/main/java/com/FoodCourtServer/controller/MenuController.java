@@ -113,4 +113,19 @@ public class MenuController {
 
     }
 
+    @RequestMapping(value = "/search-menus-by-name/{name}", method = RequestMethod.GET)
+    public ResponseEntity<?> searchMenusByName(@PathVariable("name") String name) {
+        LOGGER.info("search menu with "+name+" keyword");
+
+        List<Menu> menus = menuService.searchMenusByName(name);
+
+        if (menus == null) {
+            LOGGER.error("menus with name "+name+" not found");
+
+            return new ResponseEntity<>(new CustomErrorType("menus with name "+name+" not found"), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(menus,HttpStatus.OK);
+    }
+
 }
