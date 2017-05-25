@@ -5,11 +5,9 @@
  */
 package com.FoodCourtServer.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  *
@@ -25,6 +23,9 @@ public class Card {
     @NotNull
     @Column(name = "saldo")
     private Integer saldo;
+
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    private List<OrderTransaction> orderTransactions;
     
     public String getId() {
         return id;
