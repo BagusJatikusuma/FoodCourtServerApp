@@ -37,7 +37,7 @@ public class OrderTransaction {
 
     @ManyToOne
     @JoinColumn(name = "Card_id")
-    private String card;
+    private Card card;
 
     public OrderTransaction(Boolean paySTatus, Date orderDate, Integer paymentTotal, Integer tableNumber, Integer progressTotal) {
         this.paySTatus = paySTatus;
