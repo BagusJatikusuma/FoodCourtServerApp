@@ -26,6 +26,9 @@ public class Card {
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<OrderTransaction> orderTransactions;
+
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    private  List<TopUpTransaction> topUpTransactions;
     
     public String getId() {
         return id;

@@ -1,9 +1,7 @@
 package com.FoodCourtServer.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by bagus on 25/05/17.
@@ -20,6 +18,8 @@ public class BankAccount {
     @Column(name = "bank_name")
     private String bankName;
 
+    @OneToMany(mappedBy = "bankAccount", cascade = CascadeType.ALL)
+    private List<TopUpTransaction> topUpTransactions;
 
     public BankAccount(String id, String ownerName, String bankName) {
         this.id = id;
@@ -50,5 +50,13 @@ public class BankAccount {
 
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public List<TopUpTransaction> getTopUpTransactions() {
+        return topUpTransactions;
+    }
+
+    public void setTopUpTransactions(List<TopUpTransaction> topUpTransactions) {
+        this.topUpTransactions = topUpTransactions;
     }
 }
