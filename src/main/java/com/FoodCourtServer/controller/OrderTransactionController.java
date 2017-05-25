@@ -31,4 +31,9 @@ public class OrderTransactionController {
         return null;
     }
 
+    @RequestMapping("make-order/")
+    public ResponseEntity<?> makeOrder() {
+        return null;
+    }
+
 }
