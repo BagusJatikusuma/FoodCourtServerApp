@@ -45,6 +45,11 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
+    public Integer getMenuStockById(String menuId) {
+        return menuDao.getMenuStockById(menuId);
+    }
+
+    @Override
     public void orderMenu(List<Menu> menus) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

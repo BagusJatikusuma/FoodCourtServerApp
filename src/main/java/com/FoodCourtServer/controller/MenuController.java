@@ -128,4 +128,12 @@ public class MenuController {
         return new ResponseEntity<>(menus,HttpStatus.OK);
     }
 
+    //testCase getMenuStockById
+    @RequestMapping(value = "/get-menu-stock-by-id/{menuId}", method = RequestMethod.GET)
+    public ResponseEntity<Integer> getMenuStockById(@PathVariable("menuId") String menuId) {
+        Integer menuStock = menuService.getMenuStockById(menuId);
+
+        return new ResponseEntity<Integer>(menuStock, HttpStatus.OK);
+    }
+
 }

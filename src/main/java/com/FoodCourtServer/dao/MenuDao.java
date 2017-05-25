@@ -7,7 +7,11 @@ package com.FoodCourtServer.dao;
 
 import com.FoodCourtServer.model.Menu;
 import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -25,5 +29,8 @@ public interface MenuDao extends Repository<Menu, Long>{
     public List<Menu> findByTenant_Id(String tenantId);
 
     public List<Menu> findByNameContaining(String name);
+
+    @Query("select m.stock from Menu m where m.id = :id")
+    public Integer getMenuStockById(@Param("id") String menuId);
     
 }

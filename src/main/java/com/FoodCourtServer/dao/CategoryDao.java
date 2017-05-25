@@ -21,7 +21,7 @@ public interface CategoryDao extends Repository<Category, Long>{
 
     List<Category> findAll();
 
-    void  save(Category category);
+    void save(Category category);
 
     Category findById(String categoryId);
 
