@@ -7,7 +7,7 @@ import java.util.List;
  * Created by bagus on 25/05/17.
  */
 @Entity
-@Table(name = "BankAccount")
+@CustomerTable(name = "BankAccount")
 public class BankAccount {
     @Id
     private String id;

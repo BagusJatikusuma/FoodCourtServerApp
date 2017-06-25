@@ -5,8 +5,6 @@
  */
 package com.FoodCourtServer.service.implement;
 
-import com.FoodCourtServer.dao.MenuDao;
-import com.FoodCourtServer.model.Menu;
 import com.FoodCourtServer.model.Tenant;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -48,7 +46,7 @@ public class TenantServiceImpl implements TenantService {
                 tenant.getOpenStatus(),
                 tenant.getDescription(),
                 tenant.getContact(),
-                tenant.getOpenTime());
+                tenant.getOperationalTime());
     }
 
 }

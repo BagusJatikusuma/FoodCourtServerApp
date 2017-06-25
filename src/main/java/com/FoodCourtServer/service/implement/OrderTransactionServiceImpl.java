@@ -6,7 +6,8 @@
 package com.FoodCourtServer.service.implement;
 
 import com.FoodCourtServer.model.Menu;
-import com.FoodCourtServer.model.OrderTransaction;
+import com.FoodCourtServer.model.Order;
+
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class OrderTransactionServiceImpl implements OrderTransactionService {
     }
 
     @Override
-    public void updateTransaction(OrderTransaction transaction) {
+    public void updateTransaction(Order transaction) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

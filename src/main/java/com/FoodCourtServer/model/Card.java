@@ -14,7 +14,7 @@ import java.util.List;
  * @author bagus
  */
 @Entity
-@Table(name = "Card")
+@CustomerTable(name = "Card")
 public class Card {
 
     @Id
@@ -25,7 +25,7 @@ public class Card {
     private Integer saldo;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    private List<OrderTransaction> orderTransactions;
+    private List<Order> orderTransactions;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private  List<TopUpTransaction> topUpTransactions;

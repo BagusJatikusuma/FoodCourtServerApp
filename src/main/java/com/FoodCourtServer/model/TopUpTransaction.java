@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by bagus on 25/05/17.
  */
 @Entity
-@Table(name = "TopUp_Transaction")
+@CustomerTable(name = "TopUp_Transaction")
 public class TopUpTransaction {
 
     @Id

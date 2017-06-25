@@ -5,7 +5,7 @@
  */
 package com.FoodCourtServer.dao;
 
-import com.FoodCourtServer.model.OrderTransaction;
+import com.FoodCourtServer.model.Order;
 
 import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author bagus
  */
-public interface OrderTransactionDao extends CrudRepository<OrderTransaction, Serializable>{
+public interface OrderTransactionDao extends CrudRepository<Order, Serializable>{
 //    public void saveTransaction(Transaction transaction);
 //    public void update(Transaction transaction);
     

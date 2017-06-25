@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
+import static javafx.scene.input.KeyCode.T;
+
 /**
  *
  * @author bagus
@@ -32,5 +34,5 @@ public interface MenuDao extends Repository<Menu, Long>{
 
     @Query("select m.stock from Menu m where m.id = :id")
     public Integer getMenuStockById(@Param("id") String menuId);
-    
+
 }

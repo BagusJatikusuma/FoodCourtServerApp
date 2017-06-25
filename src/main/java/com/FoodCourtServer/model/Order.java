@@ -13,8 +13,8 @@ import java.util.Date;
  * @author bagus
  */
 @Entity
-@Table(name = "OrderTransaction")
-public class OrderTransaction {
+@CustomerTable(name = "Order")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
@@ -39,7 +39,7 @@ public class OrderTransaction {
     @JoinColumn(name = "Card_id")
     private Card card;
 
-    public OrderTransaction(Boolean paySTatus, Date orderDate, Integer paymentTotal, Integer tableNumber, Integer progressTotal) {
+    public Order(Boolean paySTatus, Date orderDate, Integer paymentTotal, Integer tableNumber, Integer progressTotal) {
         this.paySTatus = paySTatus;
         this.orderDate = orderDate;
         this.paymentTotal = paymentTotal;

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @author bagus
  */
 @Entity
-@Table(name = "Tenant")
+@CustomerTable(name = "Tenant")
 public class Tenant {
     
     @Id
@@ -37,8 +37,12 @@ public class Tenant {
     private String contact;
 
     @NotNull
-    @Column(name = "open_time")
-    private String openTime;
+    @Column(name = "operational_time")
+    private String operationalTime;
+
+    @NotNull
+    @Column(name = "image")
+    private String image;
     
     @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
     private List<Menu> menus;
@@ -59,12 +63,12 @@ public class Tenant {
         this.name = name;
     }
 
-    public String getOpenTime() {
-        return openTime;
+    public String getOperationalTime() {
+        return operationalTime;
     }
 
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
+    public void setOperationalTime(String operationalTime) {
+        this.operationalTime = operationalTime;
     }
 
     public String getContact() {
@@ -94,5 +98,13 @@ public class Tenant {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

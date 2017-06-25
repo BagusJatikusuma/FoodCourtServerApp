@@ -28,13 +28,22 @@ public class Category {
     @NotNull
     @Column(name = "name")
     private String name;
-    
+
+    @NotNull
+    @Column(name = "category_type")
+    private Boolean categoryType;
+
+    @NotNull
+    @Column(name = "tenant_name")
+    private String tenantName;
+
+    @NotNull
+    @Column(name = "image")
+    private String image;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Menu> menus;
-    
-    @NotNull
-    @Column(name = "tipe_kategori")
-    private Boolean categoryType;
+
 
     public Category() {}
 
@@ -72,5 +81,20 @@ public class Category {
     public String toString() {
         return this.name;
     }
-    
+
+    public String getTenantName() {
+        return tenantName;
+    }
+
+    public void setTenantName(String tenantName) {
+        this.tenantName = tenantName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
