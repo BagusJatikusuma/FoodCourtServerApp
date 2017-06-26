@@ -14,10 +14,10 @@ import java.util.List;
  * @author bagus
  */
 @Entity
-@CustomerTable(name = "Card")
+@Table(name = "Card")
 public class Card {
-
     @Id
+    @Column(name = "id")
     private String id;
 
     @NotNull
@@ -25,10 +25,7 @@ public class Card {
     private Integer saldo;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    private List<Order> orderTransactions;
-
-    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
-    private  List<TopUpTransaction> topUpTransactions;
+    private List<Order> orders;
     
     public String getId() {
         return id;

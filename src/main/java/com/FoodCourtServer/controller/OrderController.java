@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.FoodCourtServer.service.OrderTransactionService;
+import com.FoodCourtServer.service.OrderService;
 
 /**
  *
@@ -20,11 +20,11 @@ import com.FoodCourtServer.service.OrderTransactionService;
  */
 @RestController
 @RequestMapping("/transaction")
-public class OrderTransactionController {
-    public static final Logger LOGGER = LoggerFactory.getLogger(OrderTransactionController.class);
+public class OrderController {
+    public static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
-    OrderTransactionService transactionService;
+    OrderService orderService;
 
     @RequestMapping("make-payment/")
     public ResponseEntity<?> makePayment() {

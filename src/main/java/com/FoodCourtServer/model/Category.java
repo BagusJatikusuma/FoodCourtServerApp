@@ -44,7 +44,6 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Menu> menus;
 
-
     public Category() {}
 
     public Category(String id, String name, Boolean categoryType) {

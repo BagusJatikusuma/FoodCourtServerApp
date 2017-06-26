@@ -12,19 +12,19 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.FoodCourtServer.service.OrderTransactionService;
-import com.FoodCourtServer.dao.OrderTransactionDao;
+import com.FoodCourtServer.service.OrderService;
+import com.FoodCourtServer.dao.OrderDao;
 
 /**
  *
  * @author bagus
  */
-@Service("OrderTransactionService")
+@Service("OrderService")
 @Transactional
-public class OrderTransactionServiceImpl implements OrderTransactionService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderTransactionDao transactionDao;
+    private OrderDao orderDao;
     
     @Override
     public void createTransaction(List<Menu> Menus) {

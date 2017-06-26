@@ -1,9 +1,7 @@
 package com.FoodCourtServer.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by bagus on 25/06/17.
@@ -15,17 +13,25 @@ public class Topping {
     @Column(name = "id")
     private String id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "stock")
     private Short stock;
 
+    @NotNull
     @Column(name = "stock_ordered")
     private Short stockOrdered;
 
+    @NotNull
     @Column(name = "price")
     private Integer price;
+
+    @ManyToOne
+    @JoinColumn(name = "Tenant_id")
+    private Tenant tenant;
 
     public Topping(String id, String name, Short stock, Short stockOrdered, Integer price) {
         this.id = id;

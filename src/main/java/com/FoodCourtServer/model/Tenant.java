@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
  * @author bagus
  */
 @Entity
-@CustomerTable(name = "Tenant")
+@Table(name = "Tenant")
 public class Tenant {
-    
     @Id
+    @Column(name = "id")
     private String id;
     
     @NotNull
@@ -28,15 +28,12 @@ public class Tenant {
     @Column(name = "open_status")
     private Boolean openStatus;
 
-    @NotNull
     @Column(name = "description")
     private String description;
 
-    @NotNull
     @Column(name = "contact")
     private String contact;
 
-    @NotNull
     @Column(name = "operational_time")
     private String operationalTime;
 
@@ -46,6 +43,9 @@ public class Tenant {
     
     @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
     private List<Menu> menus;
+
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+    private List<Topping> toppings;
 
     public String getId() {
         return id;

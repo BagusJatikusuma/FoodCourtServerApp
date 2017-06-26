@@ -1,9 +1,7 @@
 package com.FoodCourtServer.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by bagus on 25/06/17.
@@ -20,6 +18,9 @@ public class CustomerTable {
 
     @Column(name = "table_total")
     private Short tableTotal;
+
+    @OneToMany(mappedBy = "customerTable", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     public String getId() {
         return id;

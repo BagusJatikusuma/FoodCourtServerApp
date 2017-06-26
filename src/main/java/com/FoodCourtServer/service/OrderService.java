@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author bagus
  */
-public interface OrderTransactionService {
+public interface OrderService {
     public void createTransaction(List<Menu> Menus);
     public void updateTransaction(Order transaction);
     

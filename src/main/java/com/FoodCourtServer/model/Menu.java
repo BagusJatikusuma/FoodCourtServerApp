@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Menu")
 public class Menu {
     @Id
+    @Column(name = "id")
     private String id;
     
     @NotNull
@@ -29,23 +30,41 @@ public class Menu {
     
     @Column(name = "description")
     private String description;
-    
+
+    @NotNull
+    @Column(name = "stock")
+    private Short stock;
+
+    @NotNull
+    @Column(name = "price")
+    private Integer price;
+
+    @NotNull
+    @Column(name = "image")
+    private String image;
+
+    @NotNull
+    @Column(name = "estimation_time")
+    private Short estimationTime;
+
+    @NotNull
+    @Column(name = "stock_ordered")
+    private Short stockOrdered;
+
+    @Column(name = "max_level")
+    private Short maxLevel;
+
+    @NotNull
+    @Column(name = "has_level")
+    private boolean hasLevel;
+
     @ManyToOne
     @JoinColumn(name = "Category_id")
     private Category category;
-    
+
     @ManyToOne
     @JoinColumn(name = "Tenant_id")
     private Tenant tenant;
-    
-    @Column(name = "stock")
-    private Integer stock;
-    
-    @Column(name = "price")
-    private Integer price;
-    
-    @Column(name = "image_path")
-    private String imagePath;
     
     public void setId(String id) {
         this.id = id;
@@ -71,11 +90,11 @@ public class Menu {
         return this.description;
     }
     
-    public void setStock(Integer stock) {
+    public void setStock(Short stock) {
         this.stock = stock;
     }
     
-    public Integer getStock() {
+    public Short getStock() {
         return this.stock;
     }
     
@@ -87,11 +106,43 @@ public class Menu {
         return this.price;
     }
     
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(String image) {
+        this.image = image;
     }
     
-    public String getImagePath() {
-        return this.imagePath;
+    public String getImage() {
+        return this.image;
+    }
+
+    public Short getEstimationTime() {
+        return estimationTime;
+    }
+
+    public void setEstimationTime(Short estimationTime) {
+        this.estimationTime = estimationTime;
+    }
+
+    public Short getStockOrdered() {
+        return stockOrdered;
+    }
+
+    public void setStockOrdered(Short stockOrdered) {
+        this.stockOrdered = stockOrdered;
+    }
+
+    public Short getMaxLevel() {
+        return maxLevel;
+    }
+
+    public void setMaxLevel(Short maxLevel) {
+        this.maxLevel = maxLevel;
+    }
+
+    public boolean isHasLevel() {
+        return hasLevel;
+    }
+
+    public void setHasLevel(boolean hasLevel) {
+        this.hasLevel = hasLevel;
     }
 }

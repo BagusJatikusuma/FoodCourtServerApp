@@ -6,6 +6,7 @@
 package com.FoodCourtServer.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -13,39 +14,45 @@ import java.util.Date;
  * @author bagus
  */
 @Entity
-@CustomerTable(name = "Order")
+@Table(name = "Order")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
 
-    @Column(name = "pay_status")
-    private Boolean paySTatus;
+    @NotNull
+    @Column(name = "payment_status")
+    private boolean paymentStatus;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "order_date")
     private Date orderDate;
 
+    @NotNull
     @Column(name = "payment_total")
     private Integer paymentTotal;
 
-    @Column(name = "table_number")
-    private Integer tableNumber;
+    @NotNull
+    @Column(name = "progress_length")
+    private Short progressLength;
 
-    @Column(name = "progress_total")
-    private Integer progressTotal;
+    @NotNull
+    @Column(name = "order_status")
+    private boolean orderStatus;
+
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "payment_expired_date")
+    private Date paymentExpiredDate;
 
     @ManyToOne
     @JoinColumn(name = "Card_id")
     private Card card;
 
-    public Order(Boolean paySTatus, Date orderDate, Integer paymentTotal, Integer tableNumber, Integer progressTotal) {
-        this.paySTatus = paySTatus;
-        this.orderDate = orderDate;
-        this.paymentTotal = paymentTotal;
-        this.tableNumber = tableNumber;
-        this.progressTotal = progressTotal;
-    }
+    @ManyToOne
+    @JoinColumn(name = "Table_id")
+    private CustomerTable customerTable;
 
     public String getId() {
         return id;
@@ -55,12 +62,12 @@ public class Order {
         this.id = id;
     }
 
-    public Boolean getPaySTatus() {
-        return paySTatus;
+    public Boolean getPaymentStatus() {
+        return paymentStatus;
     }
 
-    public void setPaySTatus(Boolean paySTatus) {
-        this.paySTatus = paySTatus;
+    public void setPaymentStatus(Boolean paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public Date getOrderDate() {
@@ -79,19 +86,27 @@ public class Order {
         this.paymentTotal = paymentTotal;
     }
 
-    public Integer getTableNumber() {
-        return tableNumber;
+    public Short getProgressLength() {
+        return progressLength;
     }
 
-    public void setTableNumber(Integer tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setProgressLength(Short progressLength) {
+        this.progressLength = progressLength;
     }
 
-    public Integer getProgressTotal() {
-        return progressTotal;
+    public boolean isOrderStatus() {
+        return orderStatus;
     }
 
-    public void setProgressTotal(Integer progressTotal) {
-        this.progressTotal = progressTotal;
+    public void setOrderStatus(boolean orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Date getPaymentExpiredDate() {
+        return paymentExpiredDate;
+    }
+
+    public void setPaymentExpiredDate(Date paymentExpiredDate) {
+        this.paymentExpiredDate = paymentExpiredDate;
     }
 }

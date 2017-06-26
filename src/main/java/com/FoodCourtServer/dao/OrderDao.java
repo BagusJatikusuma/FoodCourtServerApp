@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author bagus
  */
-public interface OrderTransactionDao extends CrudRepository<Order, Serializable>{
+public interface OrderDao extends CrudRepository<Order, Serializable>{
 //    public void saveTransaction(Transaction transaction);
 //    public void update(Transaction transaction);
     
