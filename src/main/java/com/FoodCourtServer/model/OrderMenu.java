@@ -1,6 +1,7 @@
 package com.FoodCourtServer.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "OrderMenu")
 public class OrderMenu {
+    @EmbeddedId
+    private OrderMenuId orderMenuId;
+
     @NotNull
     @Column(name = "protion")
     private Short portion;
