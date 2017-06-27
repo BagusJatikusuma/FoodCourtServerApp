@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author bagus
  */
-@Entity
+@Entity(name = "Menu")
 @Table(name = "Menu")
 public class Menu {
     @Id

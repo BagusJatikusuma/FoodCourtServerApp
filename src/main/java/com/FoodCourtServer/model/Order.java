@@ -15,7 +15,7 @@ import java.util.List;
  * @author bagus
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "OrderTransaction")
 public class Order {
     @Id
     private String id;
@@ -51,7 +51,7 @@ public class Order {
     public String getId() {
         return id;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }

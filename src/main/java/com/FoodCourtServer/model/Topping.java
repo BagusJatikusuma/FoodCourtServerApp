@@ -34,9 +34,6 @@ public class Topping {
     @JoinColumn(name = "Tenant_id")
     private Tenant tenant;
 
-    @OneToMany(mappedBy = "topping", cascade = CascadeType.ALL)
-    private List<OrderMenuTopping> orderMenuToppings;
-
     public Topping(String id, String name, Short stock, Short stockOrdered, Integer price) {
         this.id = id;
         this.name = name;

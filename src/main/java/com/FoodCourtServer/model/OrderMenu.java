@@ -10,10 +10,8 @@ import java.util.List;
 @Entity(name = "OrderMenu")
 @Table(name = "OrderMenu")
 public class OrderMenu {
-//    @EmbeddedId
-//    private OrderMenuId orderMenuId;
-    @Id
-    private int id;
+    @EmbeddedId
+    private OrderMenuId orderMenuId;
 
     @NotNull
     @Column(name = "protion")

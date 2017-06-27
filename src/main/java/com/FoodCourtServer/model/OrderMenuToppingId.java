@@ -11,20 +11,20 @@ import java.io.Serializable;
  */
 //@Embeddable
 public class OrderMenuToppingId implements Serializable {
-//    @ManyToOne
-//    @JoinColumn(name = "Topping_id")
-//    private Topping topping;
+    @ManyToOne
+    @JoinColumn(name = "Topping_id")
+    private Topping topping;
 
-//    @ManyToOne
-//    @JoinColumns({
-//            @JoinColumn(
-//                    name = "Order_menuOrder_id",
-//                    referencedColumnName = "Order_id"
-//            ),
-//            @JoinColumn(
-//                    name = "Order_menuMenu_id",
-//                    referencedColumnName = "Menu_id"
-//            )
-//    })
-//    private OrderMenu orderMenu;
+    @ManyToOne
+    @JoinColumns({
+            @JoinColumn(
+                    name = "Order_menuOrder_id",
+                    referencedColumnName = "Order_id"
+            ),
+            @JoinColumn(
+                    name = "Order_menuMenu_id",
+                    referencedColumnName = "Menu_id"
+            )
+    })
+    private OrderMenu orderMenu;
 }

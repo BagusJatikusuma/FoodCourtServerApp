@@ -7,7 +7,7 @@ import java.util.List;
  * Created by bagus on 25/06/17.
  */
 @Entity
-@Table(name = "Table")
+@Table(name = "CustomerTable")
 public class CustomerTable {
     @Id
     @Column(name = "id")

@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "OrderMenuTopping")
 public class OrderMenuTopping {
-    @Id
-    private int id;
+    @EmbeddedId
+    private OrderMenuToppingId orderMenuToppingId;
 
     @NotNull
     @Column(name = "portion")
@@ -19,10 +19,6 @@ public class OrderMenuTopping {
     @NotNull
     @Column(name = "price")
     private Integer price;
-
-    @ManyToOne
-    @JoinColumn(name = "Topping_id")
-    private Topping topping;
 
     public Integer getPrice() {
         return price;
