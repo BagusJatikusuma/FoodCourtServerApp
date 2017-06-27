@@ -1,19 +1,19 @@
 package com.FoodCourtServer.model;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by bagus on 26/06/17.
  */
-@Entity
+@Entity(name = "OrderMenu")
 @Table(name = "OrderMenu")
 public class OrderMenu {
-    @EmbeddedId
-    private OrderMenuId orderMenuId;
+//    @EmbeddedId
+//    private OrderMenuId orderMenuId;
+    @Id
+    private int id;
 
     @NotNull
     @Column(name = "protion")

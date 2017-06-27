@@ -2,6 +2,7 @@ package com.FoodCourtServer.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by bagus on 25/06/17.
@@ -32,6 +33,9 @@ public class Topping {
     @ManyToOne
     @JoinColumn(name = "Tenant_id")
     private Tenant tenant;
+
+    @OneToMany(mappedBy = "topping", cascade = CascadeType.ALL)
+    private List<OrderMenuTopping> orderMenuToppings;
 
     public Topping(String id, String name, Short stock, Short stockOrdered, Integer price) {
         this.id = id;

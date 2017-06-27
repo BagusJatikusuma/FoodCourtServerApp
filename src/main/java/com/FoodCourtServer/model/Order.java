@@ -8,6 +8,7 @@ package com.FoodCourtServer.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -17,32 +18,25 @@ import java.util.Date;
 @Table(name = "Order")
 public class Order {
     @Id
-    @Column(name = "id")
     private String id;
 
-    @NotNull
     @Column(name = "payment_status")
     private boolean paymentStatus;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_date")
     private Date orderDate;
 
-    @NotNull
     @Column(name = "payment_total")
     private Integer paymentTotal;
 
-    @NotNull
     @Column(name = "progress_length")
     private Short progressLength;
 
-    @NotNull
     @Column(name = "order_status")
     private boolean orderStatus;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "payment_expired_date")
     private Date paymentExpiredDate;
 
