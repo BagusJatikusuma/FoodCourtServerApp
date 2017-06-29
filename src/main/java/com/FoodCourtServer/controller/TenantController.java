@@ -34,7 +34,7 @@ public class TenantController {
 
         List<Tenant> tenants = tenantService.getTenants();
 
-        if (tenants == null) {
+        if (tenants.isEmpty()) {
             LOGGER.error("Tenant not found");
 
             return new ResponseEntity<>(new CustomErrorType("Tenant not found"), HttpStatus.NOT_FOUND);

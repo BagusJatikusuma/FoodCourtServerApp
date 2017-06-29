@@ -32,29 +32,13 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping(value = "/get-menu-by-id/{menuId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getMenuById(@PathVariable("menuId") String menuId) {
-        LOGGER.info("fetching menu with id: "+menuId);
-
-        Menu menu = menuService.getMenuById(menuId);
-
-        if (menu == null) {
-            LOGGER.error("menu with id: "+menuId+" not found");
-
-            return new ResponseEntity<>(new CustomErrorType("menu not found"), HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(menu, HttpStatus.OK);
-
-    }
-
     @RequestMapping(value = "/get-menus", method = RequestMethod.GET)
     public ResponseEntity<?> getMenus() {
         LOGGER.info("fetching menus");
 
         List<Menu> menus = menuService.getMenus();
 
-        if (menus == null) {
+        if (menus.isEmpty()) {
             LOGGER.error("menus not found");
 
             return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
@@ -71,24 +55,8 @@ public class MenuController {
 
         List<Menu> menus = menuService.getMenusByCategory(idCategory);
 
-        if (menus == null) {
-            LOGGER.error("menus with "+idCategory+" not found");
-
-            return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
-
-        }
-
-        return new ResponseEntity<>(menus, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/get-menus-by-type/{type}", method = RequestMethod.GET)
-    public ResponseEntity<?> getMenusByCategoryType(@PathVariable("type") Boolean categoryType) {
-        LOGGER.info("fetching menus with "+categoryType.toString()+" type");
-
-        List<Menu> menus = menuService.getMenusByCategoryType(categoryType);
-
-        if (menus == null) {
-            LOGGER.error("menus with "+categoryType.toString()+" not found");
+        if (menus.isEmpty()) {
+            LOGGER.error("menus with category id "+idCategory+" not found");
 
             return new ResponseEntity<>(new CustomErrorType("menus not found"), HttpStatus.NOT_FOUND);
 
@@ -103,8 +71,8 @@ public class MenuController {
 
         List<Menu> menus = menuService.getMenusByTenant(tenantId);
 
-        if (menus == null) {
-            LOGGER.error("menus with outlet "+tenantId+" not found");
+        if (menus.isEmpty()) {
+            LOGGER.error("menus with tenant id "+tenantId+" not found");
 
             return new ResponseEntity<>(new CustomErrorType("menus with tenant "+tenantId+" not found"), HttpStatus.NOT_FOUND);
         }
@@ -119,21 +87,13 @@ public class MenuController {
 
         List<Menu> menus = menuService.searchMenusByName(name);
 
-        if (menus == null) {
+        if (menus.isEmpty()) {
             LOGGER.error("menus with name "+name+" not found");
 
             return new ResponseEntity<>(new CustomErrorType("menus with name "+name+" not found"), HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(menus,HttpStatus.OK);
-    }
-
-    //testCase getMenuStockById
-    @RequestMapping(value = "/get-menu-stock-by-id/{menuId}", method = RequestMethod.GET)
-    public ResponseEntity<Integer> getMenuStockById(@PathVariable("menuId") String menuId) {
-        Integer menuStock = menuService.getMenuStockById(menuId);
-
-        return new ResponseEntity<Integer>(menuStock, HttpStatus.OK);
     }
 
 }
