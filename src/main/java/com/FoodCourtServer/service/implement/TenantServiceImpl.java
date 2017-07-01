@@ -8,6 +8,8 @@ package com.FoodCourtServer.service.implement;
 import com.FoodCourtServer.model.Tenant;
 import java.util.List;
 import javax.transaction.Transactional;
+
+import com.FoodCourtServer.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.FoodCourtServer.service.TenantService;
@@ -23,6 +25,9 @@ public class TenantServiceImpl implements TenantService {
 
     @Autowired
     private TenantDao tenantDao;
+
+    @Autowired
+    private ImageService imageService;
    
     @Override
     public List<Tenant> getTenants() {

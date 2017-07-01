@@ -7,6 +7,7 @@ package com.FoodCourtServer.service.implement;
 
 import com.FoodCourtServer.dao.MenuDao;
 import com.FoodCourtServer.model.Menu;
+import com.FoodCourtServer.service.ImageService;
 import com.FoodCourtServer.service.MenuService;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -23,6 +24,9 @@ public class MenuServiceImpl implements MenuService{
 
     @Autowired
     private MenuDao menuDao;
+
+    @Autowired
+    private ImageService imageService;
     
     @Override
     public Menu getMenuById(String menuId) {

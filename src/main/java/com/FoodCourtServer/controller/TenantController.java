@@ -7,14 +7,30 @@ package com.FoodCourtServer.controller;
 
 import com.FoodCourtServer.model.Tenant;
 import com.FoodCourtServer.util.CustomErrorType;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.FoodCourtServer.service.TenantService;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.ServletContext;
+import javax.xml.ws.Response;
 
 /**
  *
@@ -76,6 +92,35 @@ public class TenantController {
         tenantService.createTenant(tenant);
 
         return new ResponseEntity<>(tenant, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    ResponseEntity<?> uploadTenantImage(@RequestParam("file") MultipartFile file) {
+        LOGGER.info("upload image now");
+
+        if (file.isEmpty()) {
+            LOGGER.error("Failed to upload: image not found");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("Failed to upload: image not found"),
+                    HttpStatus.NOT_FOUND);
+        }
+
+        try {
+            byte[] bytes = file.getBytes();
+
+            Path path = Paths.get("/home/bagus/FoodCourtAppImages/tenant/A001.jpg");
+
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            LOGGER.error("Failed to read image from ");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("Failed to read image"),
+                    HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>("success upload", HttpStatus.OK);
     }
 
 }

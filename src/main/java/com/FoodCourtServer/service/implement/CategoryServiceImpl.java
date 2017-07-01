@@ -10,6 +10,8 @@ import com.FoodCourtServer.model.Category;
 import com.FoodCourtServer.service.CategoryService;
 import java.util.List;
 import javax.transaction.Transactional;
+
+import com.FoodCourtServer.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class CategoryServiceImpl implements CategoryService{
     
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ImageService imageService;
 
     @Override
     public List<Category> getCategories() {
