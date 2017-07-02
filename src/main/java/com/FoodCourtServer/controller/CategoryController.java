@@ -9,6 +9,7 @@ import com.FoodCourtServer.model.Category;
 import com.FoodCourtServer.service.CategoryService;
 import com.FoodCourtServer.util.CustomErrorType;
 
+import java.io.IOException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -78,19 +80,39 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<?> createCategory(@RequestBody Category category) {
+    public ResponseEntity<?> createCategory(
+            @RequestPart("metadata") Category category,
+            @RequestPart("file") MultipartFile imageFile) {
         LOGGER.info("creating "+category.toString());
 
-        categoryService.saveCategory(category);
+        try {
+            categoryService.saveCategory(category, imageFile);
+        } catch (IOException e) {
+            LOGGER.error("cannot read the image");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("cannot read the image"),
+                    HttpStatus.EXPECTATION_FAILED);
+        }
 
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
-    public ResponseEntity<Category> editCategory(@RequestBody Category category) {
+    public ResponseEntity<?> editCategory(
+            @RequestPart("metadata") Category category,
+            @RequestPart("file") MultipartFile imageFile) {
         LOGGER.info("edit "+category.toString());
 
-        categoryService.updateCategory(category);
+        try {
+            categoryService.updateCategory(category, imageFile);
+        } catch (IOException e) {
+            LOGGER.error("cannot read the image");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("cannot read the image"),
+                    HttpStatus.EXPECTATION_FAILED);
+        }
 
         return new ResponseEntity<>(category,HttpStatus.CREATED);
     }

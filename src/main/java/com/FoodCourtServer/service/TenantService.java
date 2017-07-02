@@ -7,6 +7,9 @@ package com.FoodCourtServer.service;
 
 import com.FoodCourtServer.model.Menu;
 import com.FoodCourtServer.model.Tenant;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,6 +19,6 @@ import java.util.List;
 public interface TenantService {
     public List<Tenant> getTenants();
     public Tenant getTenantById(String tenantId);
-    public void createTenant(Tenant tenant);
-    public void updateTenant(Tenant tenant);
+    public void createTenant(Tenant tenant, MultipartFile imageFile) throws IOException;
+    public void updateTenant(Tenant tenant, MultipartFile imageFile) throws IOException;
 }

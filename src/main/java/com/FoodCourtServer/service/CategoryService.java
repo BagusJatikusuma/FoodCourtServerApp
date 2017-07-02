@@ -6,7 +6,9 @@
 package com.FoodCourtServer.service;
 
 import com.FoodCourtServer.model.Category;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public interface CategoryService {
     public Category getCategoryById(String categoryId);
     public List<Category> getCategories();
     public List<Category> getCategoriesByCategoryType(Boolean categoryType);
-    public void saveCategory(Category category);
-    public void updateCategory(Category category);
+    public void saveCategory(Category category, MultipartFile imageFile) throws IOException;
+    public void updateCategory(Category category, MultipartFile imageFile) throws IOException;
     public void deleteCategory(String categoryId);
 }

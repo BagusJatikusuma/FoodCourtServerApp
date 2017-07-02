@@ -8,12 +8,15 @@ package com.FoodCourtServer.service.implement;
 import com.FoodCourtServer.dao.CategoryDao;
 import com.FoodCourtServer.model.Category;
 import com.FoodCourtServer.service.CategoryService;
+
+import java.io.IOException;
 import java.util.List;
 import javax.transaction.Transactional;
 
 import com.FoodCourtServer.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -40,13 +43,21 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void saveCategory(Category category) {
+    public void saveCategory(Category category, MultipartFile imageFile) throws IOException {
+        category.setImage(category.getId());
+
+        imageService.uploadImage(imageFile,"category", category.getId());
+
         categoryDao.save(category);
     }
 
     @Override
-    public void updateCategory(Category category) {
-        categoryDao.updateCategory(category.getId(),category.getName(),category.getCategoryType());
+    public void updateCategory(Category category, MultipartFile imageFile) throws IOException {
+        category.setImage(category.getId());
+
+        imageService.uploadImage(imageFile,"category",category.getId()+".jpg");
+
+        categoryDao.save(category);
     }
 
     @Override

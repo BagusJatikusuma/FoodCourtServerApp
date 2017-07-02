@@ -6,6 +6,8 @@
 package com.FoodCourtServer.service.implement;
 
 import com.FoodCourtServer.model.Tenant;
+
+import java.io.IOException;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.FoodCourtServer.service.TenantService;
 import com.FoodCourtServer.dao.TenantDao;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -40,12 +43,20 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
-    public void createTenant(Tenant tenant) {
+    public void createTenant(Tenant tenant, MultipartFile imageFile) throws IOException {
+        tenant.setImage(tenant.getId());
+
+        imageService.uploadImage(imageFile,"tenant", tenant.getId());
+
         tenantDao.save(tenant);
     }
 
     @Override
-    public void updateTenant(Tenant tenant) {
+    public void updateTenant(Tenant tenant, MultipartFile imageFile) throws IOException {
+        tenant.setImage(tenant.getId());
+
+        imageService.uploadImage(imageFile,"tenant", tenant.getId());
+
         tenantDao.save(tenant);
     }
 

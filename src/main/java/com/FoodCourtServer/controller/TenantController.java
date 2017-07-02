@@ -77,50 +77,41 @@ public class TenantController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
-    ResponseEntity<Tenant> editTenant(@RequestBody Tenant tenant) {
+    ResponseEntity<?> editTenant(
+            @RequestPart("metadata") Tenant tenant,
+            @RequestPart("file") MultipartFile imageFile) {
         LOGGER.info("edit "+tenant.toString());
 
-        tenantService.updateTenant(tenant);
+        try {
+            tenantService.updateTenant(tenant, imageFile);
+        } catch (IOException e) {
+            LOGGER.error("cannot read the image");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("cannot read the image"),
+                    HttpStatus.EXPECTATION_FAILED);
+        }
 
         return new ResponseEntity<>(tenant,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    ResponseEntity<Tenant> createTenant(@RequestBody Tenant tenant) {
+    ResponseEntity<?> createTenant(
+            @RequestPart("metadata") Tenant tenant,
+            @RequestPart("file") MultipartFile imageFile) {
         LOGGER.info("create "+tenant.toString());
 
-        tenantService.createTenant(tenant);
+        try {
+            tenantService.createTenant(tenant, imageFile);
+        } catch (IOException e) {
+            LOGGER.error("cannot read the image");
+
+            return new ResponseEntity<>(
+                    new CustomErrorType("cannot read the image"),
+                    HttpStatus.EXPECTATION_FAILED);
+        }
 
         return new ResponseEntity<>(tenant, HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    ResponseEntity<?> uploadTenantImage(@RequestParam("file") MultipartFile file) {
-        LOGGER.info("upload image now");
-
-        if (file.isEmpty()) {
-            LOGGER.error("Failed to upload: image not found");
-
-            return new ResponseEntity<>(
-                    new CustomErrorType("Failed to upload: image not found"),
-                    HttpStatus.NOT_FOUND);
-        }
-
-        try {
-            byte[] bytes = file.getBytes();
-
-            Path path = Paths.get("/home/bagus/FoodCourtAppImages/tenant/A001.jpg");
-
-            Files.write(path, bytes);
-        } catch (IOException e) {
-            LOGGER.error("Failed to read image from ");
-
-            return new ResponseEntity<>(
-                    new CustomErrorType("Failed to read image"),
-                    HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>("success upload", HttpStatus.OK);
     }
 
 }
