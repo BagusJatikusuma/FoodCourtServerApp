@@ -11,11 +11,11 @@ import com.FoodCourtServer.service.CategoryService;
 
 import java.io.IOException;
 import java.util.List;
-import javax.transaction.Transactional;
 
 import com.FoodCourtServer.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -32,9 +32,18 @@ public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private ImageService imageService;
 
+    private final String CATEGORY_IMAGE_URL = "http://192.168.100.31:8080/images/get-category-image/";
+
     @Override
+    @Transactional(readOnly = true)
     public List<Category> getCategories() {
-        return categoryDao.findAll();
+        List<Category> categories = categoryDao.findAll();
+
+        for (Category category : categories) {
+            category.setImage(CATEGORY_IMAGE_URL+category.getImage());
+        }
+
+        return categories;
     }
 
     @Override
@@ -55,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService{
     public void updateCategory(Category category, MultipartFile imageFile) throws IOException {
         category.setImage(category.getId());
 
-        imageService.uploadImage(imageFile,"category",category.getId()+".jpg");
+        imageService.uploadImage(imageFile,"category",category.getId());
 
         categoryDao.save(category);
     }

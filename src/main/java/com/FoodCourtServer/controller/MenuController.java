@@ -6,9 +6,11 @@
 package com.FoodCourtServer.controller;
 
 import com.FoodCourtServer.model.Menu;
+import com.FoodCourtServer.rest.MenuWrapper;
 import com.FoodCourtServer.service.MenuService;
 import com.FoodCourtServer.util.CustomErrorType;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +80,45 @@ public class MenuController {
         }
 
         return new ResponseEntity<>(menus, HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/get-menus-by-tenant-v01/{tenantId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getMenusByTenantV01(@PathVariable("tenantId") String tenantId) {
+        LOGGER.info("fetching menus with Tenant "+tenantId);
+
+        List<Menu> menus = menuService.getMenusByTenant(tenantId);
+
+        List<MenuWrapper> menuWrappers = new ArrayList<>();
+
+        int i =0;
+        for (Menu menu : menus) {
+            LOGGER.info("replace menu "+ i);
+            MenuWrapper menuWrapper = new MenuWrapper();
+
+            menuWrapper.setId(menu.getId());
+            menuWrapper.setName(menu.getName());
+            menuWrapper.setDescription(menu.getDescription());
+            menuWrapper.setStock(menu.getStock());
+            menuWrapper.setPrice(menu.getPrice());
+            menuWrapper.setImage(menu.getImage());
+            menuWrapper.setEstimationTime(menu.getEstimationTime());
+            menuWrapper.setStockOrdered(menu.getStockOrdered());
+            menuWrapper.setMaxLevel(menu.getMaxLevel());
+            menuWrapper.setHasLevel(menu.isHasLevel());
+            menuWrapper.setCategoryId(menu.getCategory().getId());
+            menuWrapper.setCategoryName(menu.getCategory().getName());
+
+            menuWrappers.add(menuWrapper);
+        }
+
+        if (menuWrappers.isEmpty()) {
+            LOGGER.error("menus with tenant id "+tenantId+" not found");
+
+            return new ResponseEntity<>(new CustomErrorType("menus with tenant "+tenantId+" not found"), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(menuWrappers, HttpStatus.OK);
 
     }
 

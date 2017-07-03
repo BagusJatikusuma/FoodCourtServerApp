@@ -9,13 +9,13 @@ import com.FoodCourtServer.model.Tenant;
 
 import java.io.IOException;
 import java.util.List;
-import javax.transaction.Transactional;
 
 import com.FoodCourtServer.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.FoodCourtServer.service.TenantService;
 import com.FoodCourtServer.dao.TenantDao;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -31,15 +31,28 @@ public class TenantServiceImpl implements TenantService {
 
     @Autowired
     private ImageService imageService;
+
+    private final String TENANT_IMAGE_URL = "http://192.168.100.31:8080/images/get-tenant-image/";
    
     @Override
+    @Transactional(readOnly = true)
     public List<Tenant> getTenants() {
-        return tenantDao.findAll();
+        List<Tenant> tenants = tenantDao.findAll();
+
+        for (Tenant tenant : tenants) {
+            tenant.setImage(TENANT_IMAGE_URL+tenant.getImage());
+        }
+
+        return tenants;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Tenant getTenantById(String tenantId) {
-        return tenantDao.findById(tenantId);
+        Tenant tenant = tenantDao.findById(tenantId);
+        tenant.setImage(TENANT_IMAGE_URL+tenant.getImage());
+
+        return tenant;
     }
 
     @Override

@@ -1,111 +1,84 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.FoodCourtServer.model;
+package com.FoodCourtServer.rest;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import com.FoodCourtServer.model.Menu;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
- *
- * @author bagus
+ * Created by bagus on 03/07/17.
  */
-@Entity(name = "Menu")
-@Table(name = "Menu")
-public class Menu {
-    @Id
-    @Column(name = "id")
+@Component
+public class MenuWrapper {
     private String id;
-    
-    @NotNull
-    @Column(name = "name")
+
     private String name;
-    
-    @Column(name = "description")
+
     private String description;
 
-    @NotNull
-    @Column(name = "stock")
     private Short stock;
 
-    @NotNull
-    @Column(name = "price")
     private Integer price;
 
-    @NotNull
-    @Column(name = "image")
     private String image;
 
-    @NotNull
-    @Column(name = "estimation_time")
     private Short estimationTime;
 
-    @NotNull
-    @Column(name = "stock_ordered")
     private Short stockOrdered;
 
-    @Column(name = "max_level")
     private Short maxLevel;
 
-    @NotNull
-    @Column(name = "has_level")
     private boolean hasLevel;
 
-    @ManyToOne
-    @JoinColumn(name = "Category_id")
-    private Category category;
+    private String categoryId;
 
-    @ManyToOne
-    @JoinColumn(name = "Tenant_id")
-    private Tenant tenant;
-    
+    private String categoryName;
+
+
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public String getId() {
         return this.id;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
-    } 
-    
+    }
+
     public String getDescription() {
         return this.description;
     }
-    
+
     public void setStock(Short stock) {
         this.stock = stock;
     }
-    
+
     public Short getStock() {
         return this.stock;
     }
-    
+
     public void setPrice(Integer price) {
         this.price = price;
     }
-    
+
     public Integer getPrice() {
         return this.price;
     }
-    
+
     public void setImage(String image) {
         this.image = image;
     }
-    
+
     public String getImage() {
         return this.image;
     }
@@ -142,19 +115,19 @@ public class Menu {
         this.hasLevel = hasLevel;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Tenant getTenant() {
-        return tenant;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setTenant(Tenant tenant) {
-        this.tenant = tenant;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
