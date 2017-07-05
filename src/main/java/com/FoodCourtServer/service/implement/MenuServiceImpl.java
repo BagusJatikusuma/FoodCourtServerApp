@@ -5,20 +5,15 @@
  */
 package com.FoodCourtServer.service.implement;
 
-import com.FoodCourtServer.controller.MenuController;
 import com.FoodCourtServer.dao.MenuDao;
-import com.FoodCourtServer.model.Category;
 import com.FoodCourtServer.model.Menu;
 import com.FoodCourtServer.rest.MenuWrapper;
-import com.FoodCourtServer.rest.TenantMenuWrapper;
-import com.FoodCourtServer.service.CategoryService;
 import com.FoodCourtServer.service.ImageService;
 import com.FoodCourtServer.service.MenuService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.FoodCourtServer.service.TenantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +64,7 @@ public class MenuServiceImpl implements MenuService{
         List<Menu> menus = menuDao.findByTenant_Id(tenantId);
         List<MenuWrapper> menuWrappers = new ArrayList<>();
 
-//        for (Menu menu : menus) {
+//        for (MenuCompared menu : menus) {
 //            menu.setImage(MENU_IMAGE_URL+menu.getImage());
 //
 //            for (MenuWrapper menuWrapper : menuWrappers) {
@@ -117,7 +112,7 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public Integer getMenuStockById(String menuId) {
+    public Short getMenuStockById(String menuId) {
         return menuDao.getMenuStockById(menuId);
     }
 

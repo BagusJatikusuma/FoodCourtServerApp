@@ -21,7 +21,7 @@ public interface MenuService {
     public List<Menu> getMenusByCategory(String categoryId);
     public List<Menu> getMenusByCategoryType(Boolean categoryType);
     public List<Menu> searchMenusByName(String name);
-    public Integer getMenuStockById(String menuId);
+    public Short getMenuStockById(String menuId);
     public void orderMenu(List<Menu> menus);
     public List<MenuWrapper> getMenusByTenantV01(String tenantId);
 }

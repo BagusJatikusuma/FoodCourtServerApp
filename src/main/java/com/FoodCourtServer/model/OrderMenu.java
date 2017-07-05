@@ -31,6 +31,25 @@ public class OrderMenu {
     @Column(name = "level")
     private Short level;
 
+    public OrderMenu() {}
+
+    public OrderMenu(
+            OrderMenuId orderMenuId,
+            Short portion,
+            Integer price,
+            boolean orderStatus,
+            String note,
+            Short level
+    )
+    {
+        this.orderMenuId = orderMenuId;
+        this.portion = portion;
+        this.price = price;
+        this.orderStatus = orderStatus;
+        this.note = note;
+        this.level = level;
+    }
+
     public Short getPortion() {
         return portion;
     }

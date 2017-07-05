@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * Created by bagus on 03/07/17.
  */
-public interface ToppingService extends Repository<Topping, Long> {
+public interface ToppingService {
     public List<Topping> getToppings();
     public void createTopping(Topping topping);
     public void editTopping(Topping topping);
     public void deleteTopping(String toppingId);
-
+    public short getStockById(String toppingId);
 }

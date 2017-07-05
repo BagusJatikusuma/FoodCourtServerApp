@@ -1,38 +1,50 @@
 package com.FoodCourtServer.rest;
 
+import com.FoodCourtServer.model.Topping;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by bagus on 25/05/17.
  */
 public class MenuOrderWrapper {
-    private String menuId;
-    private String menuName;
-    private Short potion;
+    private String id;
+    private String name;
+    private String categoryId;
+    private String tenantId;
+    private Short portion;
+    private Short stock;
+    private Short stockOrdered;
+    private Short level;
+    private String note;
     private Integer priceTotal;
-    private boolean availability;
+    private boolean availabilityStatus;
     private Integer estimationTime;
+    private List<Topping> toppings;
 
-    public String getMenuId() {
-        return menuId;
+    public String getId() {
+        return id;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public String getName() {
+        return name;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Short getPotion() {
-        return potion;
+    public Short getPortion() {
+        return portion;
     }
 
-    public void setPotion(Short potion) {
-        this.potion = potion;
+    public void setPortion(Short portion) {
+        this.portion = portion;
     }
 
     public Integer getPriceTotal() {
@@ -43,12 +55,12 @@ public class MenuOrderWrapper {
         this.priceTotal = priceTotal;
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public boolean isAvailabilityStatus() {
+        return availabilityStatus;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setAvailabilityStatus(boolean availabilityStatus) {
+        this.availabilityStatus = availabilityStatus;
     }
 
     public Integer getEstimationTime() {
@@ -57,5 +69,61 @@ public class MenuOrderWrapper {
 
     public void setEstimationTime(Integer estimationTime) {
         this.estimationTime = estimationTime;
+    }
+
+    public Short getStock() {
+        return stock;
+    }
+
+    public void setStock(Short stock) {
+        this.stock = stock;
+    }
+
+    public Short getStockOrdered() {
+        return stockOrdered;
+    }
+
+    public void setStockOrdered(Short stockOrdered) {
+        this.stockOrdered = stockOrdered;
+    }
+
+    public Short getLevel() {
+        return level;
+    }
+
+    public void setLevel(Short level) {
+        this.level = level;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+    public void setToppings(List<Topping> toppings) {
+        this.toppings = toppings;
     }
 }

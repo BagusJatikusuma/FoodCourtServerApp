@@ -6,6 +6,8 @@
 package com.FoodCourtServer.controller;
 
 import com.FoodCourtServer.model.Tenant;
+import com.FoodCourtServer.rest.DummyWrapper;
+import com.FoodCourtServer.rest.TenantWrapper;
 import com.FoodCourtServer.util.CustomErrorType;
 
 import java.io.File;
@@ -15,6 +17,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +52,36 @@ public class TenantController {
         LOGGER.info("fetching Tenants");
 
         List<Tenant> tenants = tenantService.getTenants();
+
+        if (tenants.isEmpty()) {
+            LOGGER.error("Tenant not found");
+
+            return new ResponseEntity<>(new CustomErrorType("Tenant not found"), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(tenants, HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/get-tenants-v01", method = RequestMethod.GET)
+    ResponseEntity<?> getTenantsV01() {
+        LOGGER.info("fetching Tenants");
+
+        List<Tenant> tenants = tenantService.getTenants();
+        List<TenantWrapper> tenantWrappers = new ArrayList<>();
+
+//        for (Tenant tenant : tenants) {
+//            TenantWrapper tenantWrapper = new TenantWrapper(
+//                    tenant.getId(),
+//                    tenant.getName(),
+//                    tenant.getOpenStatus(),
+//                    tenant.getDescription(),
+//                    tenant.getContact(),
+//                    tenant.getOperationalTime(),
+//                    tenant.getImage()
+//            );
+//
+//        }
 
         if (tenants.isEmpty()) {
             LOGGER.error("Tenant not found");
@@ -112,6 +145,16 @@ public class TenantController {
         }
 
         return new ResponseEntity<>(tenant, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/dummy", method = RequestMethod.POST)
+    ResponseEntity<?> dummy(@RequestBody DummyWrapper dummyWrapper) {
+        return new ResponseEntity<>(dummyWrapper, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/dummies", method = RequestMethod.POST)
+    ResponseEntity<?> dummies(@RequestBody List<DummyWrapper> dummyWrappers) {
+        return new ResponseEntity<>(dummyWrappers, HttpStatus.CREATED);
     }
 
 }

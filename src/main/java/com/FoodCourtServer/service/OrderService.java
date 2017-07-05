@@ -7,6 +7,8 @@ package com.FoodCourtServer.service;
 
 import com.FoodCourtServer.model.Menu;
 import com.FoodCourtServer.model.Order;
+import com.FoodCourtServer.rest.MakeOrderWrapper;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,8 @@ import java.util.List;
  * @author bagus
  */
 public interface OrderService {
-    public void createTransaction(List<Menu> Menus);
-    public void updateTransaction(Order transaction);
-    
+    void createTransaction(List<Menu> Menus);
+    void updateTransaction(Order transaction);
+    MakeOrderWrapper makeOrder(MakeOrderWrapper makeOrderWrapper);
+    void create(Order order);
 }

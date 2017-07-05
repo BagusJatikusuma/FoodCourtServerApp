@@ -20,6 +20,18 @@ public class OrderMenuTopping {
     @Column(name = "price")
     private Integer price;
 
+    public OrderMenuTopping() {}
+
+    public OrderMenuTopping(
+            OrderMenuToppingId orderMenuToppingId,
+            Short portion,
+            Integer price)
+    {
+        this.orderMenuToppingId = orderMenuToppingId;
+        this.portion = portion;
+        this.price = price;
+    }
+
     public Integer getPrice() {
         return price;
     }

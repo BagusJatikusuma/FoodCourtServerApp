@@ -33,6 +33,13 @@ public class OrderMenuId implements Serializable {
         return Objects.hash(getOrder(), getMenu());
     }
 
+    public OrderMenuId() {}
+
+    public OrderMenuId(Order order, Menu menu) {
+        this.order = order;
+        this.menu = menu;
+    }
+
     public Order getOrder() {
         return order;
     }

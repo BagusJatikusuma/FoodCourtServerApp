@@ -33,6 +33,6 @@ public interface MenuDao extends Repository<Menu, Long>{
     public List<Menu> findByNameContaining(String name);
 
     @Query("select m.stock from Menu m where m.id = :id")
-    public Integer getMenuStockById(@Param("id") String menuId);
+    public Short getMenuStockById(@Param("id") String menuId);
 
 }

@@ -34,6 +34,8 @@ public class Topping {
     @JoinColumn(name = "Tenant_id")
     private Tenant tenant;
 
+    public Topping(){}
+
     public Topping(String id, String name, Short stock, Short stockOrdered, Integer price) {
         this.id = id;
         this.name = name;

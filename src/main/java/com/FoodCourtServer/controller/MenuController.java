@@ -88,12 +88,9 @@ public class MenuController {
         LOGGER.info("fetching menus with Tenant "+tenantId);
 
         List<Menu> menus = menuService.getMenusByTenant(tenantId);
-
         List<MenuWrapper> menuWrappers = new ArrayList<>();
 
-        int i =0;
         for (Menu menu : menus) {
-            LOGGER.info("replace menu "+ i);
             MenuWrapper menuWrapper = new MenuWrapper();
 
             menuWrapper.setId(menu.getId());
@@ -135,6 +132,15 @@ public class MenuController {
         }
 
         return new ResponseEntity<>(menus,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/test-get-stock/{menuId}", method = RequestMethod.GET)
+    ResponseEntity<?> getStock(@PathVariable("menuId") String menuId) {
+        LOGGER.info("get "+menuId+" stock");
+
+        Short stock = menuService.getMenuStockById(menuId);
+
+        return new ResponseEntity<Object>(stock, HttpStatus.OK);
     }
 
 }

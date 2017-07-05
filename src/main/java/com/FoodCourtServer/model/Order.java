@@ -48,6 +48,30 @@ public class Order {
     @JoinColumn(name = "Table_id")
     private CustomerTable customerTable;
 
+    public Order() {}
+
+    public Order(
+            String id,
+            boolean paymentStatus,
+            Date orderDate,
+            Integer paymentTotal,
+            Short progressLength,
+            boolean orderStatus,
+            Date paymentExpiredDate,
+            Card card,
+            CustomerTable customerTable)
+    {
+        this.id = id;
+        this.paymentStatus = paymentStatus;
+        this.orderDate = orderDate;
+        this.paymentTotal = paymentTotal;
+        this.progressLength = progressLength;
+        this.orderStatus = orderStatus;
+        this.paymentExpiredDate = paymentExpiredDate;
+        this.card = card;
+        this.customerTable = customerTable;
+    }
+
     public String getId() {
         return id;
     }
@@ -102,5 +126,21 @@ public class Order {
 
     public void setPaymentExpiredDate(Date paymentExpiredDate) {
         this.paymentExpiredDate = paymentExpiredDate;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public CustomerTable getCustomerTable() {
+        return customerTable;
+    }
+
+    public void setCustomerTable(CustomerTable customerTable) {
+        this.customerTable = customerTable;
     }
 }

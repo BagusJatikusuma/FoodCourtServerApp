@@ -39,4 +39,9 @@ public class ToppingServiceImpl implements ToppingService {
     public void deleteTopping(String toppingId) {
         toppingDao.deleteById(toppingId);
     }
+
+    @Override
+    public short getStockById(String toppingId) {
+        return toppingDao.getStockById(toppingId);
+    }
 }

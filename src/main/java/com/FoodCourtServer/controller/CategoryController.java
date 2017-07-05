@@ -123,7 +123,7 @@ public class CategoryController {
 
         categoryService.deleteCategory(categoryId);
 
-        return new ResponseEntity<Object>(categoryId+"deleted",HttpStatus.OK);
+        return new ResponseEntity<>(categoryId+"deleted",HttpStatus.OK);
     }
 
 }

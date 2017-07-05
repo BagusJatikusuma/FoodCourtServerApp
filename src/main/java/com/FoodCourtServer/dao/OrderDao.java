@@ -9,12 +9,14 @@ import com.FoodCourtServer.model.Order;
 
 import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
 
 /**
  *
  * @author bagus
  */
-public interface OrderDao extends CrudRepository<Order, Serializable>{
+public interface OrderDao extends Repository<Order, Long> {
+    public void save(Order order);
 //    public void saveTransaction(Transaction transaction);
 //    public void update(Transaction transaction);
     

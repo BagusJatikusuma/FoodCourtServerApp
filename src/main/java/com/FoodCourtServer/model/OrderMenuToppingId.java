@@ -27,4 +27,27 @@ public class OrderMenuToppingId implements Serializable {
             )
     })
     private OrderMenu orderMenu;
+
+    public OrderMenuToppingId() {}
+
+    public OrderMenuToppingId(Topping topping, OrderMenu orderMenu) {
+        this.topping = topping;
+        this.orderMenu = orderMenu;
+    }
+
+    public Topping getTopping() {
+        return topping;
+    }
+
+    public void setTopping(Topping topping) {
+        this.topping = topping;
+    }
+
+    public OrderMenu getOrderMenu() {
+        return orderMenu;
+    }
+
+    public void setOrderMenu(OrderMenu orderMenu) {
+        this.orderMenu = orderMenu;
+    }
 }
