@@ -8,6 +8,7 @@ package com.FoodCourtServer.service;
 import com.FoodCourtServer.model.Menu;
 import com.FoodCourtServer.model.Order;
 import com.FoodCourtServer.rest.MakeOrderWrapper;
+import com.FoodCourtServer.rest.MakePaymentWrapper;
 
 import java.util.List;
 
@@ -18,6 +19,19 @@ import java.util.List;
 public interface OrderService {
     void createTransaction(List<Menu> Menus);
     void updateTransaction(Order transaction);
+
     MakeOrderWrapper makeOrder(MakeOrderWrapper makeOrderWrapper);
+    int makePayment(MakePaymentWrapper makePaymentWrapper);
+
+    //for testing
     void create(Order order);
+
+    //need revision
+    void createOrderMenuByOrder(MakeOrderWrapper makeOrderWrapper);
+    //need revision
+    void createOrderMenuToppingByOrder(MakeOrderWrapper makeOrderWrapper);
+    //need revision
+    MakeOrderWrapper commitMakeOrder(MakeOrderWrapper makeOrderWrapper);
+    //need revision
+    void editStockByOrder(MakeOrderWrapper makeOrderWrapper);
 }

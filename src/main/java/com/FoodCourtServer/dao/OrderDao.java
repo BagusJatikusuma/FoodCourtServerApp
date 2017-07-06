@@ -16,7 +16,8 @@ import org.springframework.data.repository.Repository;
  * @author bagus
  */
 public interface OrderDao extends Repository<Order, Long> {
-    public void save(Order order);
+    void save(Order order);
+    Order findById(String orderId);
 //    public void saveTransaction(Transaction transaction);
 //    public void update(Transaction transaction);
     

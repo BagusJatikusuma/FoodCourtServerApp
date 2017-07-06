@@ -11,7 +11,7 @@ import java.util.List;
 public class OrderWrapper {
     private List<MenuOrderWrapper> menuOrderWrappers;
     private boolean orderStatus;
-    private CustomerTable table;
+    private CustomerTableWrapper table;
     private Integer paymentTotal;
     private String orderId;
 
@@ -31,11 +31,11 @@ public class OrderWrapper {
         this.orderStatus = orderStatus;
     }
 
-    public CustomerTable getTable() {
+    public CustomerTableWrapper getTable() {
         return table;
     }
 
-    public void setTable(CustomerTable table) {
+    public void setTable(CustomerTableWrapper table) {
         this.table = table;
     }
 

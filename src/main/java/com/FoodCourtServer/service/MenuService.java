@@ -15,6 +15,7 @@ import java.util.List;
  * @author bagus
  */
 public interface MenuService {
+    public void update(Menu menu);
     public Menu getMenuById(String menuId);
     public List<Menu> getMenus();
     public List<Menu> getMenusByTenant(String tenantId);

@@ -21,6 +21,7 @@ import static javafx.scene.input.KeyCode.T;
  */
 public interface MenuDao extends Repository<Menu, Long>{
     public Menu findById(String menuId);
+    public void save(Menu menu);
 
     public List<Menu> findAll();
 

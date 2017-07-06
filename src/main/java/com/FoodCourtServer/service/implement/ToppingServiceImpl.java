@@ -26,6 +26,16 @@ public class ToppingServiceImpl implements ToppingService {
     }
 
     @Override
+    public Topping getToppingById(String toppingId) {
+        return toppingDao.findById(toppingId);
+    }
+
+    @Override
+    public void update(Topping topping) {
+        toppingDao.save(topping);
+    }
+
+    @Override
     public void createTopping(Topping topping) {
         toppingDao.save(topping);
     }

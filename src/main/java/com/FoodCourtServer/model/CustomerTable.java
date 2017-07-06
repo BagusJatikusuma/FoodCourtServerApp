@@ -22,6 +22,21 @@ public class CustomerTable {
     @OneToMany(mappedBy = "customerTable", cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    public CustomerTable() {}
+
+    public CustomerTable(String id, String sector, Short tableTotal, List<Order> orders) {
+        this.id = id;
+        this.sector = sector;
+        this.tableTotal = tableTotal;
+        this.orders = orders;
+    }
+
+    public CustomerTable(String id, String sector, Short tableTotal) {
+        this.id = id;
+        this.sector = sector;
+        this.tableTotal = tableTotal;
+    }
+
     public String getId() {
         return id;
     }

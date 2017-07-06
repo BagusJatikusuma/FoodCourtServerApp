@@ -37,7 +37,12 @@ public class MenuServiceImpl implements MenuService{
     private ImageService imageService;
 
     private final String MENU_IMAGE_URL = "http://192.168.100.31:8080/images/get-menu-image/";
-    
+
+    @Override
+    public void update(Menu menu) {
+        menuDao.save(menu);
+    }
+
     @Override
     public Menu getMenuById(String menuId) {
         return menuDao.findById(menuId);

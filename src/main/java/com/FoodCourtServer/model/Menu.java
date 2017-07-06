@@ -61,7 +61,61 @@ public class Menu {
     @ManyToOne
     @JoinColumn(name = "Tenant_id")
     private Tenant tenant;
-    
+
+    public Menu() {}
+
+    public Menu(
+            String id,
+            String name,
+            String description,
+            Short stock,
+            Integer price,
+            String image,
+            Short estimationTime,
+            Short stockOrdered,
+            Short maxLevel,
+            boolean hasLevel)
+    {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.stock = stock;
+        this.price = price;
+        this.image = image;
+        this.estimationTime = estimationTime;
+        this.stockOrdered = stockOrdered;
+        this.maxLevel = maxLevel;
+        this.hasLevel = hasLevel;
+    }
+
+    public Menu(
+            String id,
+            String name,
+            String description,
+            Short stock,
+            Integer price,
+            String image,
+            Short estimationTime,
+            Short stockOrdered,
+            Short maxLevel,
+            boolean hasLevel,
+            Category category,
+            Tenant tenant)
+    {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.stock = stock;
+        this.price = price;
+        this.image = image;
+        this.estimationTime = estimationTime;
+        this.stockOrdered = stockOrdered;
+        this.maxLevel = maxLevel;
+        this.hasLevel = hasLevel;
+        this.category = category;
+        this.tenant = tenant;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

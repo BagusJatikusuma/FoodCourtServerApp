@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface ToppingDao extends Repository<Topping, Long> {
     public List<Topping> findAll();
+    public Topping findById(String toppingId);
     public void save(Topping topping);
     public void deleteById(String toppingId);
 

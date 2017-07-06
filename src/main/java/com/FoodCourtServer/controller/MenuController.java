@@ -105,6 +105,8 @@ public class MenuController {
             menuWrapper.setHasLevel(menu.isHasLevel());
             menuWrapper.setCategoryId(menu.getCategory().getId());
             menuWrapper.setCategoryName(menu.getCategory().getName());
+            menuWrapper.setHasTopping(!menu.getCategory().getCategoryType());
+            menuWrapper.setTenantName(menu.getTenant().getName());
 
             menuWrappers.add(menuWrapper);
         }

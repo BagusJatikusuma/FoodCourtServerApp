@@ -34,6 +34,9 @@ public class MenuWrapper {
 
     private String categoryName;
 
+    private boolean hasTopping;
+
+    private String tenantName;
 
     public void setId(String id) {
         this.id = id;
@@ -129,5 +132,21 @@ public class MenuWrapper {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public boolean isHasTopping() {
+        return hasTopping;
+    }
+
+    public void setHasTopping(boolean hasTopping) {
+        this.hasTopping = hasTopping;
+    }
+
+    public String getTenantName() {
+        return tenantName;
+    }
+
+    public void setTenantName(String tenantName) {
+        this.tenantName = tenantName;
     }
 }

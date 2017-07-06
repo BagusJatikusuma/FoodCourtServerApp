@@ -7,7 +7,7 @@ package com.FoodCourtServer.controller;
 
 import com.FoodCourtServer.model.Order;
 import com.FoodCourtServer.rest.MakeOrderWrapper;
-import com.FoodCourtServer.rest.OrderWrapper;
+import com.FoodCourtServer.rest.MakePaymentWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +29,17 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping("/make-payment")
-    public ResponseEntity<?> makePayment() {
-        return null;
-    }
-
     @RequestMapping(value = "/make-order", method = RequestMethod.POST)
     public ResponseEntity<?> makeOrder(@RequestBody MakeOrderWrapper makeOrderWrapper) {
         LOGGER.info("make order");
 
         MakeOrderWrapper makeOrderWrapperResult = orderService.makeOrder(makeOrderWrapper);
+
+        if (makeOrderWrapperResult.getOrderWrapper().isOrderStatus()) {
+            orderService.editStockByOrder(makeOrderWrapperResult);
+            orderService.createOrderMenuByOrder(makeOrderWrapperResult);
+            orderService.createOrderMenuToppingByOrder(makeOrderWrapperResult);
+        }
 
         return new ResponseEntity<>(makeOrderWrapperResult, HttpStatus.OK);
     }
@@ -55,6 +56,18 @@ public class OrderController {
         orderService.create(order);
 
         return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/make-payment", method = RequestMethod.POST)
+    ResponseEntity<?> makePayment(@RequestBody MakePaymentWrapper makePaymentWrapper) {
+        LOGGER.info("make payment");
+
+        switch (orderService.makePayment(makePaymentWrapper)) {
+            case 0 : return new ResponseEntity<Object>("card not found", HttpStatus.EXPECTATION_FAILED);
+            case -1 : return new ResponseEntity<Object>("insufficient balance", HttpStatus.EXPECTATION_FAILED);
+        }
+
+        return new ResponseEntity<Object>(makePaymentWrapper, HttpStatus.OK);
     }
 
 }

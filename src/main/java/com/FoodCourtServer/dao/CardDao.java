@@ -6,21 +6,22 @@
 package com.FoodCourtServer.dao;
 
 import com.FoodCourtServer.model.Card;
-import org.springframework.data.repository.CrudRepository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author bagus
  */
-public interface CardDao extends CrudRepository<Card, Long> {
-    /**
-    * This method will find an Customer instance in the database by its email.
-    * Note that this method is not implemented and its working code will be
-    * automagically generated from its signature by Spring Data JPA.
-     * @param email
-     * @return Customer
-    */
-//    public Customer findByEmail(String email);
-//    public Integer getSaldo(String idCard);
+public interface CardDao extends Repository<Card, Long> {
+
+    void save(Card card);
+
+    Card findById(String cardId);
+
+    @Query("select c.saldo from Card c where c.id = :id")
+    Integer getSaldoById(@Param("id") String cardId);
     
 }

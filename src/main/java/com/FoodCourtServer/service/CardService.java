@@ -13,6 +13,8 @@ import com.FoodCourtServer.model.Card;
  */
 public interface CardService {
 //    public Customer getUserByEmail(String email);
-//    public Integer getCustomerSaldo(String idCard);
+    Integer getSaldo(String idCard);
+    void update(Card card);
+    void editCardSaldo(Integer newSaldo, String cardId);
     
 }
